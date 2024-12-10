@@ -24,10 +24,10 @@ func test_unsafe_big_decrease() -> void:
 	report.numbers = Array([9, 7, 6, 2, 1], TYPE_INT, "", null)
 	assert_bool(report.is_report_safe()).is_false()
 
-func test_unsafe_change_increase_to_decrease() -> void:
+func test_safe_change_increase_to_decrease_one_time() -> void:
 	report.numbers = Array([1, 3, 2, 4, 5], TYPE_INT, "", null)
-	assert_bool(report.is_report_safe()).is_false()
+	assert_bool(report.is_report_safe()).is_true()
 
-func test_unsafe_consecutive_equal_numbers() -> void:
+func test_safe_consecutive_equal_numbers_one_time() -> void:
 	report.numbers = Array([8, 6, 4, 4, 1], TYPE_INT, "", null)
-	assert_bool(report.is_report_safe()).is_false()
+	assert_bool(report.is_report_safe()).is_true()
