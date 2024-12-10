@@ -17,3 +17,10 @@ func test_evaluate_operations_with_example_string() -> void:
 	var calculator := Calculator.new()
 	var operation_list := calculator.find_expressions(string)
 	assert_int(calculator.evaluate_operations(operation_list)).is_equal(161)
+
+func test_find_expressions_using_do_and_dont_with_example_string() -> void:
+	var string := "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
+	var calculator := Calculator.new()
+	var operation_list := calculator.find_expressions(string)
+	assert_str(operation_list[0].get_string()).is_equal("mul(2,4)")
+	assert_str(operation_list[1].get_string()).is_equal("mul(8,5)")
