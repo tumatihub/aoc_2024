@@ -48,3 +48,17 @@ func test_find_xmas_with_example() -> void:
 	matrix.add_line("MAMMMXMMMM")
 	matrix.add_line("MXMXAXMASX")
 	assert_int(matrix.count_xmas()).is_equal(18)
+
+func test_find_x_mas_with_example() -> void:
+	var matrix := XmasMatrix.new()
+	matrix.add_line("MMMSXXMASM")
+	matrix.add_line("MSAMXMSMSA")
+	matrix.add_line("AMXSXMAAMM")
+	matrix.add_line("MSAMASMSMX")
+	matrix.add_line("XMASAMXAMM")
+	matrix.add_line("XXAMMXXAMA")
+	matrix.add_line("SMSMSASXSS")
+	matrix.add_line("SAXAMASAAA")
+	matrix.add_line("MAMMMXMMMM")
+	matrix.add_line("MXMXAXMASX")
+	assert_int(matrix.count_x_mas()).is_equal(9)
