@@ -22,3 +22,14 @@ func test_incorrect_ordered_update() -> void:
 	var rules := UpdateRules.new()
 	rules.add(47, 75)
 	assert_bool(update.is_ordered(rules)).is_false()
+
+func test_ordering_update() -> void:
+	var update := PagesUpdate.new([75, 47, 61, 53, 29])
+	var rules := UpdateRules.new()
+	rules.add(47, 75)
+	rules.add(61, 47)
+	rules.add(29, 53)
+	assert_bool(update.is_ordered(rules)).is_false()
+	update.sort(rules)
+	assert_bool(update.is_ordered(rules)).is_true()
+	

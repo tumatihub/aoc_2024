@@ -10,6 +10,19 @@ func test_add_middle_pages_from_correct_updates_with_example() -> void:
 	assert_int(correct_updates.sum_all_middle_page()).is_equal(143)
 	assert_int(correct_updates.size()).is_equal(3)
 
+func test_get_incorrect_ordered_updates_from_example() -> void:
+	var rules := setup_example_rules()
+	var updates := setup_example_updates()
+	var incorrect_updates := updates.get_correct_ordered_updates(rules, true)
+	assert_int(incorrect_updates.size()).is_equal(3)
+
+func test_sort_incorrect_updates_from_example_and_sum_middle_pages() -> void:
+	var rules := setup_example_rules()
+	var updates := setup_example_updates()
+	var incorrect_updates := updates.get_correct_ordered_updates(rules, true)
+	incorrect_updates.sort(rules)
+	assert_int(incorrect_updates.sum_all_middle_page()).is_equal(123)
+
 func setup_example_rules() -> UpdateRules:
 	var rules := UpdateRules.new()
 	rules.add(47,53)

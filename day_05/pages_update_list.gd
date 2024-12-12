@@ -3,10 +3,14 @@ extends RefCounted
 
 var updates: Array[PagesUpdate] = []
 
-func get_correct_ordered_updates(rules: UpdateRules) -> PagesUpdateList:
+func sort(rules: UpdateRules) -> void:
+	for u in updates:
+		u.sort(rules)
+
+func get_correct_ordered_updates(rules: UpdateRules, get_incorrect := false) -> PagesUpdateList:
 	var new_list := PagesUpdateList.new()
 	for u in updates:
-		if u.is_ordered(rules):
+		if u.is_ordered(rules) != get_incorrect:
 			new_list.add(u)
 	return new_list
 
