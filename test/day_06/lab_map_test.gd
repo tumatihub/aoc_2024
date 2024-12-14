@@ -104,6 +104,15 @@ func test_walk_guard_with_example() -> void:
 	map.do_walk_guard_path()
 	assert_int(map.count_path_positions()).is_equal(41)
 
+func test_walk_guard_and_mark_path() -> void:
+	var map := LabMap.new()
+	map.add("..........")
+	map.add("..#.<.....")
+	map.setup_guard()
+	map.do_walk_guard_path_finding_loop()
+	assert_int(map.get_pos(Vector2i(3, 1))).is_equal("+")
+	assert_int(map.get_pos(Vector2i(3, 0))).is_equal("]")
+
 func setup_example_map() -> LabMap:
 	var map := LabMap.new()
 	map.add("....#.....")
