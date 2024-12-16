@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://boclgcshjcm3n"]
+[gd_scene load_steps=5 format=3 uid="uid://boclgcshjcm3n"]
 
 [ext_resource type="Script" path="res://day_06/d06_pt02.gd" id="1_gmf1y"]
+[ext_resource type="Script" path="res://day_06/lab_map_grid.gd" id="2_46juj"]
+[ext_resource type="PackedScene" uid="uid://blbovkayvlw0m" path="res://day_06/cell.tscn" id="3_g0d3u"]
+[ext_resource type="Script" path="res://day_06/camera_2d.gd" id="4_p4hk3"]
 
-[node name="D06Pt02" type="Node"]
+[node name="D06Pt02" type="Node" node_paths=PackedStringArray("lab_grid")]
 script = ExtResource("1_gmf1y")
+lab_grid = NodePath("LabMapGrid")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("grid")]
+script = ExtResource("4_p4hk3")
+grid = NodePath("../LabMapGrid")
+
+[node name="LabMapGrid" type="GridContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+script = ExtResource("2_46juj")
+cell_scene = ExtResource("3_g0d3u")
