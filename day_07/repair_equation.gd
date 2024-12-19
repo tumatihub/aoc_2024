@@ -15,10 +15,13 @@ func combine_operators(operands: Array[int] = self.operands) -> Array[int]:
 	if operands.size() == 2:
 		result.append(operands[0] + operands[1])
 		result.append(operands[0] * operands[1])
+		result.append(int(str(operands[0]) + str(operands[1])))
 	else:
 		for value in combine_operators(operands.slice(0, operands.size()-1)):
-			result.append(operands[operands.size()-1] + value)
-			result.append(operands[operands.size()-1] * value)
+			var op := operands[operands.size()-1]
+			result.append(value + op)
+			result.append(value * op)
+			result.append(int(str(value) + str(op)))
 	return result
 
 func _create_from_string(equation: String) -> void:

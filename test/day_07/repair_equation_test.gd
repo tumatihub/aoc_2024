@@ -31,7 +31,14 @@ func test_total_calibration_result_with_example() -> void:
 	for eq in eq_list:
 		if eq.is_valid():
 			sum += eq.test_value
-	assert_int(sum).is_equal(3749)
+	assert_int(sum).is_equal(11387)
+
+func test_concat_operation_with_2_operands() -> void:
+	var eq := RepairEquation.new("83: 17 5")
+	var results: Array[int] = eq.combine_operators()
+	assert_bool(results.count(85) == 1).is_true()
+	assert_bool(results.count(22) == 1).is_true()
+	assert_bool(results.count(175) == 1).is_true()
 
 func get_equations_from_example() -> Array[RepairEquation]:
 	var eq_list: Array[RepairEquation] = []
