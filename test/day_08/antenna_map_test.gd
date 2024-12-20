@@ -80,6 +80,28 @@ func test_find_antinodes_with_example() -> void:
 	map.find_antinodes()
 	assert_int(map.antinodes.size()).is_equal(14)
 
+func test_find_full_antinodes() -> void:
+	var map := AntennaMap.new()
+	map.add_line("T.........")
+	map.add_line("...T......")
+	map.add_line(".T........")
+	map.add_line("..........")
+	map.add_line("..........")
+	map.add_line("..........")
+	map.add_line("..........")
+	map.add_line("..........")
+	map.add_line("..........")
+	map.add_line("..........")
+	map.find_antennas()
+	map.find_full_antinodes()
+	assert_int(map.antinodes.size()).is_equal(9)
+
+func test_find_full_antinodes_with_example() -> void:
+	var map := setup_map_example()
+	map.find_antennas()
+	map.find_full_antinodes()
+	assert_int(map.antinodes.size()).is_equal(34)
+
 func setup_map_example() -> AntennaMap:
 	var map := AntennaMap.new()
 	map.add_line("............")

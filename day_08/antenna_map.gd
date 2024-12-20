@@ -8,6 +8,31 @@ var map: Array[PackedStringArray] = []
 var antennas: Array[Antenna] = []
 var antinodes: Array[Vector2i] = []
 
+func find_full_antinodes() -> void:
+	for a in antennas:
+		for pos_idx in a.positions.size():
+			for other_idx in range(pos_idx+1, a.positions.size()):
+				var pos := a.positions[pos_idx]
+				var other := a.positions[other_idx]
+				_find_all_inline_antinodes(pos, other)
+
+func _find_all_inline_antinodes(pos: Vector2i, other: Vector2i) -> void:
+	var diff := pos - other
+	var idx := 0
+	var diff_inc := diff * idx
+	while _is_pos_inside_map(pos + diff_inc):
+		if not antinodes.has(pos + diff_inc):
+			antinodes.append(pos + diff_inc)
+		idx += 1
+		diff_inc = diff * idx
+	idx = 0
+	diff_inc = diff * idx
+	while _is_pos_inside_map(other - diff_inc):
+		if not antinodes.has(other - diff_inc):
+			antinodes.append(other - diff_inc)
+		idx += 1
+		diff_inc = diff * idx
+ 
 func find_antinodes() -> void:
 	for a in antennas:
 		for pos_idx in a.positions.size():
