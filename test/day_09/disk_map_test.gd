@@ -55,3 +55,11 @@ func test_compare_string_added_count_with_map_size() -> void:
 	map.add_dense_line("233313312")
 	map.add_dense_line("1414131402")
 	assert_int(map.string_count).is_equal(map.size())
+
+func test_defrag_keeping_files_together_with_example() -> void:
+	var map := DiskMap.new()
+	map.add_dense_line("2333133121414131402")
+	map.expand()
+	map.defrag_keeping_files_together()
+	assert_str("".join(map.expanded_map)).is_equal("00992111777.44.333....5555.6666.....8888..")
+	assert_int(map.checksum()).is_equal(2858)
