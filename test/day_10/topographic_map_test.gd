@@ -23,6 +23,10 @@ func test_example() -> void:
 	var map := setup_example()
 	assert_int(map.count_all_trails()).is_equal(36)
 
+func test_example_counting_all_paths() -> void:
+	var map := setup_example()
+	assert_int(map.count_all_trails(true)).is_equal(81)
+
 func setup_example() -> TopographicMap:
 	var map := TopographicMap.new()
 	map.add_line("89010123")

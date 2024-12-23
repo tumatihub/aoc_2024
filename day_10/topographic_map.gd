@@ -6,26 +6,26 @@ const TRAILHEAD = 9
 var map: Array[PackedInt32Array] = []
 var found_trailhead: Array[Vector2i] = []
 
-func count_all_trails() -> int:
+func count_all_trails(count_all_paths := false) -> int:
 	var sum := 0
 	for x in get_width():
 		for y in get_height():
 			if get_pos(Vector2i(x, y)) == 0:
-				sum += find_trails(Vector2i(x, y))
+				sum += find_trails(Vector2i(x, y), count_all_paths)
 			found_trailhead.clear()
 	return sum
 
-func find_trails(pos: Vector2i) -> int:
+func find_trails(pos: Vector2i, count_all_paths := false) -> int:
 	var sum := 0
 	var cell_value := get_pos(pos)
 	if cell_value == TRAILHEAD:
-		if found_trailhead.count(pos) > 0:
+		if found_trailhead.count(pos) > 0 and not count_all_paths:
 			return 0
 		else:
 			found_trailhead.append(pos)
 			return 1
 	for cell in _next_trail_cells(pos):
-		sum += find_trails(cell)
+		sum += find_trails(cell, count_all_paths)
 	return sum
 
 func _next_trail_cells(pos: Vector2i) -> Array[Vector2i]:
